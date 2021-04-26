@@ -426,7 +426,7 @@
  * -----------------------------------------------------------------------------
  * ---------------------------- '#' is backSpace --------------------------
  *
- * 
+ *
  * Assume "#" is like a backspace in string. This means that string "a#bc#d" actually is "bd"
    Your task is to process a string with "#" symbols.
 
@@ -491,14 +491,96 @@
 
 // console.log(cleanString('6+yqw8hfklsd-=-f#'))
 
-function clean_string(s) {
-   stringSplited = s.split('')
-   const result = []
-   stringSplited.forEach(element => {
-      if (element == "#") return result.pop()
+// function clean_string(s) {
+//    stringSplited = s.split('')
+//    const result = []
+//    stringSplited.forEach(element => {
+//       if (element == "#") return result.pop()
 
-      result.push(element)
-   });
-   return result.join('') //transforma a array em string sem o join ["a", "c"] com "ac"
+//       result.push(element)
+//    });
+//    return result.join('') //transforma a array em string sem o join ["a", "c"] com "ac"
+// }
+// console.log(clean_string('abc#d##c'))
+
+
+
+// var arr = [1, 20, 3, 4, 5];
+// var max = arr.reduce(function (a, b) {
+//    return Math.max(a, b);
+// });
+// console.log(max)
+
+
+
+
+
+
+// var troco = 10;
+
+// function calcularTroco() {
+//   var notas = [10, 5, 2];
+//   arr = new Array();
+
+//   for (x in notas) {
+//     if (notas[x] > troco) continue;
+
+//     var quantidadeCedula = parseInt(troco / notas[x]);
+//     arr.push([quantidadeCedula, notas[x]]);
+
+//     troco = troco - (quantidadeCedula * notas[x]);
+//   }
+
+//   return arr;
+// }
+// console.log(calcularTroco(42));
+
+
+// Me desculpe
+
+function change(n) {
+  let ten = 0, five = 0, two = 0
+
+  if ((n / 10) % 1 != 0 && (n / 10) >= 1) {
+    ten += Math.trunc(n / 10)
+    if (((n / 10) - Math.trunc(n / 10)) >= 0.19 && ((n / 10) - Math.trunc(n / 10)) < 0.49) {
+      two += 1
+      return { ten, five, two }
+    }
+    if (((n / 10) - Math.trunc(n / 10)) >= 0.5) {
+      five += 1
+      if (((n / 10) - Math.trunc(n / 10)) >= 0.69) two += 1
+      return { ten, five, two }
+    }
+  }
+  if ((n / 5) % 1 != 0 && (n / 5) >= 1) {
+    five += Math.trunc(n / 5)
+    if (((n / 5) - Math.trunc(n / 5)) >= 0.39) {
+      if (((n / 5) - Math.trunc(n / 5)) >= 0.79) {
+        two += 2
+        return { ten, five, two }
+      }
+      two += 1
+      return { ten, five, two }
+    }
+  }
+
+  if ((n / 10) % 1 == 0) {
+    ten += n / 10
+    return { ten, five, two }
+  }
+  else if ((n / 5) % 1 == 0) {
+    five += n / 5
+    return { ten, five, two }
+  }
+  else if ((n / 2) % 1 == 0) {
+    two += n / 2
+    return { ten, five, two }
+  }
+  return {
+    ten,
+    five,
+    two
+  }
 }
-console.log(clean_string('abc#d##c'))
+console.log(change(48))
